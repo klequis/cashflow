@@ -1,0 +1,95 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Expenses {
+  id          Int      @id @default(autoincrement())
+  acct        String
+  acctName    String
+  item        String
+  amount      Decimal
+  periodicity PERIOD
+  onDay       Int?
+  onDate      DateTime?
+  numDays     Int?
+  created_at  DateTime @default(now())
+  updated_at  DateTime @updatedAt
+}
+
+model CashFlow {
+  id          Int      @id @default(autoincrement())
+  date        DateTime
+  amt         Decimal
+  balance     Decimal
+  for         String
+  note        String
+}
+
+enum PERIOD {
+  monthly
+  oneTime
+  onDate
+  everyNumDays
+}
+
+model User {
+  id         Int      @id @default(autoincrement())
+  first_name String
+  last_name  String
+  city       String
+  email      String   @unique
+  password   String
+  phone      String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+// model Item {
+//   id            Int        @id @default(autoincrement())
+//   name          String
+//   description   String
+//   price         String
+//   restaurant_id Int
+//   restaurant    Restaurant @relation(fields: [restaurant_id], references: [id])
+//   created_at    DateTime   @default(now())
+//   updated_at    DateTime   @updatedAt
+// }
+
+// model Location {
+//   id          Int          @id @default(autoincrement())
+//   name        String
+//   created_at  DateTime     @default(now())
+//   updated_at  DateTime     @updatedAt
+//   restaurants Restaurant[]
+// }
+
+// model Cuisine {
+//   id          Int          @id @default(autoincrement())
+//   name        String
+//   created_at  DateTime     @default(now())
+//   updated_at  DateTime     @updatedAt
+//   restaurants Restaurant[]
+// }
+
+// model Review {
+//   id            Int        @id @default(autoincrement())
+//   first_name    String
+//   last_name     String
+//   text          String
+//   rating        Float
+//   restaurant_id Int
+//   restaurant    Restaurant @relation(fields: [restaurant_id], references: [id])
+//   user_id       Int
+//   user          User       @relation(fields: [user_id], references: [id])
+// }
+
+// enum PRICE {
+//   CHEAP
+//   REGULAR
+//   EXPENSIVE
+// }
