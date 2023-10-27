@@ -1,7 +1,13 @@
+A very simple way to create a stream of income and expenses. Hopefully you don't end-up at zero or less :).
+
+It isn't doing anything of interest yet.
+
+
+
 ## Thinking
 
-- One once vs updatable
-- Store each update by date
+- Updatable or repeated runs?
+- Store each update by date?
 - What is the relationship between tables Expenses & Fields
 - Do cashflow by account or combined
   - start with by account
